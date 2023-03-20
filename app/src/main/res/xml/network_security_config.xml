@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">dummyjson.com</domain>
+        <domain includeSubdomains="true">i.dummyjson.com</domain>
+        <trust-anchors>
+            <certificates src="@raw/dummyjson"/>
+            <certificates src="@raw/idummyjson"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>

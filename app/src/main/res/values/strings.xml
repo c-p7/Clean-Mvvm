@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CleanMvvm</string>
+    <string name="product_list">Product List</string>
+    <string name="product_details">Product Details</string>
+    <string name="no_data">Something went wrong. No data available at the moment</string>
+
+    <string name="price">Price : $ %1$s</string>
+    <string name="rating">Rating : %1$s</string>
+    <string name="discount">Discount : %1$s </string>
+    <string name="stock">Stock : %1$s</string>
+    <string name="brand">Brand : %1$s</string>
+    <string name="category">Category : %1$s</string>
+</resources>

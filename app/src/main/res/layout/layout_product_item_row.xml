@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="product" type="com.tcs.sample.cleanmvvm.data.response.Product" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/productLogo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/productName"
+                android:layout_margin="10dp"
+                android:text="@{product.component2()}"
+                tools:text="Product Name"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/red"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/productLogo"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/productPrice"
+                android:layout_margin="10dp"
+                android:text="@{@string/price(product.component4())}"
+                tools:text="Product Price"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/productName"
+                app:layout_constraintLeft_toRightOf="@id/productLogo"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/productRating"
+                android:layout_margin="10dp"
+                android:text="@{@string/rating(product.component5())}"
+                tools:text="Product Rating"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/productPrice"
+                app:layout_constraintLeft_toRightOf="@id/productLogo"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
