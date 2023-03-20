@@ -1,8 +1,8 @@
 package com.tcs.sample.cleanmvvm.data
 
 import com.tcs.sample.cleanmvvm.data.remote.ApiService
-import com.tcs.sample.cleanmvvm.data.remote.ProductsRepositoryImpl
-import com.tcs.sample.cleanmvvm.data.response.Product
+import com.tcs.sample.cleanmvvm.data.repository.ProductsRepositoryImpl
+import com.tcs.sample.cleanmvvm.domain.model.Product
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -31,7 +31,9 @@ class ProductsRepositoryImplTest {
     @Test
     fun getProductListData() = runBlocking {
         val expectedList = listOf<Product>(Product(1, "test"))
-        coEvery { productsRepositoryImpl.getProductsList() } returns flow { emit(listOf<Product>(Product(1, "test"))) }
+        coEvery { productsRepositoryImpl.getProductsList() } returns flow { emit(listOf<Product>(
+            Product(1, "test")
+        )) }
 
         val result = productsRepositoryImpl.getProductsList().first()
 

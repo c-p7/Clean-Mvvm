@@ -1,7 +1,9 @@
-package com.tcs.sample.cleanmvvm.data.remote
+package com.tcs.sample.cleanmvvm.data.repository
 
 import android.util.Log
-import com.tcs.sample.cleanmvvm.data.response.Product
+import com.tcs.sample.cleanmvvm.data.remote.ApiService
+import com.tcs.sample.cleanmvvm.domain.model.Product
+import com.tcs.sample.cleanmvvm.domain.repository.RemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

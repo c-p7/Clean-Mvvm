@@ -1,7 +1,7 @@
 package com.tcs.sample.cleanmvvm.domain.usecase
 
-import com.tcs.sample.cleanmvvm.data.remote.ProductsRepositoryImpl
-import com.tcs.sample.cleanmvvm.data.response.Product
+import com.tcs.sample.cleanmvvm.data.repository.ProductsRepositoryImpl
+import com.tcs.sample.cleanmvvm.domain.model.Product
 import com.tcs.sample.cleanmvvm.domain.usecases.GetProductUseCase
 import io.mockk.coEvery
 import io.mockk.mockk

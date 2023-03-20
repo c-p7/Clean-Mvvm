@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tcs.sample.cleanmvvm.R
-import com.tcs.sample.cleanmvvm.data.response.Product
+import com.tcs.sample.cleanmvvm.domain.model.Product
 import com.tcs.sample.cleanmvvm.databinding.LayoutProductItemRowBinding
 
 class ProductsAdapter(private val products:List<Product>?, private val itemClick: ProductListItemClickListener) : RecyclerView.Adapter<ProductsAdapter.PeopleViewHolder>() {

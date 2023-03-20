@@ -1,7 +1,7 @@
 package com.tcs.sample.cleanmvvm.domain.usecases
 
-import com.tcs.sample.cleanmvvm.data.remote.RemoteDataSource
-import com.tcs.sample.cleanmvvm.data.response.Product
+import com.tcs.sample.cleanmvvm.domain.repository.RemoteDataSource
+import com.tcs.sample.cleanmvvm.domain.model.Product
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

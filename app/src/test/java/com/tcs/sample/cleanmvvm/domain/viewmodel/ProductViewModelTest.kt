@@ -1,8 +1,7 @@
 package com.tcs.sample.cleanmvvm.domain.viewmodel
 
 import android.util.Log
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.tcs.sample.cleanmvvm.data.response.Product
+import com.tcs.sample.cleanmvvm.domain.model.Product
 import com.tcs.sample.cleanmvvm.domain.usecases.GetProductUseCase
 import com.tcs.sample.cleanmvvm.ui.product.ProductViewModel
 import io.mockk.MockKAnnotations
@@ -13,7 +12,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
 class ProductViewModelTest {

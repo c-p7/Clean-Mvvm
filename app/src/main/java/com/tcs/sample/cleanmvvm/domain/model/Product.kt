@@ -1,4 +1,4 @@
-package com.tcs.sample.cleanmvvm.data.response
+package com.tcs.sample.cleanmvvm.domain.model
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName

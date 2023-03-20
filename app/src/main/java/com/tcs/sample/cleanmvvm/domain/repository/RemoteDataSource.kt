@@ -1,6 +1,6 @@
-package com.tcs.sample.cleanmvvm.data.remote
+package com.tcs.sample.cleanmvvm.domain.repository
 
-import com.tcs.sample.cleanmvvm.data.response.Product
+import com.tcs.sample.cleanmvvm.domain.model.Product
 import kotlinx.coroutines.flow.Flow
 
 interface RemoteDataSource {
