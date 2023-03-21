@@ -29,15 +29,15 @@ class ProductViewModelTest {
 
     @Test
     fun testProductViewModel() = runBlocking {
-        val expectedList = Product(1, "test")
+        val expectedProduct = Product(1, "test")
         coEvery { getProductUseCase.getProduct(1) } returns flow {
-            emit(Product(1, "test"))
+            emit(expectedProduct)
         }
-        productViewModel.getSingleProduct(1)
-        var productResult = productViewModel.resultProduct.first()
 
-        Log.d("sdkjfh", "" + {productResult == expectedList})
-        assertNotNull(productResult)
-        assert(productResult == expectedList)
+        productViewModel.getSingleProduct(1)
+        var resultProduct = productViewModel.resultProduct.first()
+
+        assertNotNull(resultProduct)
+        assert(resultProduct == expectedProduct)
     }
 }

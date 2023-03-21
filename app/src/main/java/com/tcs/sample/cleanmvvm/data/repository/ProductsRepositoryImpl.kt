@@ -27,8 +27,10 @@ class ProductsRepositoryImpl (private val apiServices: ApiService) : RemoteDataS
                     emit(emptyList<Product>())
                 Log.d(TAG, "Error Response ==>> ${result.errorBody().toString()}")
             }.flowOn(Dispatchers.IO)
+
         } catch (exp : Exception) {
             Log.d(TAG, "Exception ==>> ${exp.localizedMessage}")
+
             flow {
                 emit(emptyList<Product>())
             }.flowOn(Dispatchers.IO)
@@ -50,6 +52,7 @@ class ProductsRepositoryImpl (private val apiServices: ApiService) : RemoteDataS
                     Log.d(TAG, "Error Response ==>> ${result.errorBody().toString()}")
                 }
             }.flowOn(Dispatchers.IO)
+
         } catch (exp: Exception) {
             Log.d(TAG, "Exception ==>> ${exp.localizedMessage}")
 

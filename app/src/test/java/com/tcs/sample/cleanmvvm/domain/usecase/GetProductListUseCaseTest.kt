@@ -30,9 +30,9 @@ class GetProductListUseCaseTest {
     @Test
     fun testProductListUseCase() = runBlocking {
         val expectedList = listOf<Product>(Product(1, "test"))
-        coEvery { getProductsListUseCase.getProductList() } returns flow { emit(listOf<Product>(
-            Product(1, "test")
-        )) }
+        coEvery { getProductsListUseCase.getProductList() } returns flow {
+            emit(expectedList)
+        }
 
         val result = getProductsListUseCase.getProductList().first()
 

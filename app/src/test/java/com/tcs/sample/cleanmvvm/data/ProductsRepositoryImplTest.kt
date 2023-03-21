@@ -31,9 +31,9 @@ class ProductsRepositoryImplTest {
     @Test
     fun getProductListData() = runBlocking {
         val expectedList = listOf<Product>(Product(1, "test"))
-        coEvery { productsRepositoryImpl.getProductsList() } returns flow { emit(listOf<Product>(
-            Product(1, "test")
-        )) }
+        coEvery { productsRepositoryImpl.getProductsList() } returns flow {
+            emit(expectedList)
+        }
 
         val result = productsRepositoryImpl.getProductsList().first()
 
