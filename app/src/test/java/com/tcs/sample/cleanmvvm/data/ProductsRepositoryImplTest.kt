@@ -2,9 +2,8 @@ package com.tcs.sample.cleanmvvm.data
 
 import com.tcs.sample.cleanmvvm.data.remote.ApiService
 import com.tcs.sample.cleanmvvm.data.repository.ProductsRepositoryImpl
-import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
+import com.tcs.sample.domain.model.ProductDetail
 import com.tcs.sample.cleanmvvm.domain.model.ProductList
-import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk

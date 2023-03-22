@@ -52,9 +52,9 @@ class ProductFragment : Fragment() {
                     Log.d(TAG, "viewModel resultProduct result size ==>> $result")
                     setUpDataContainerVisibleUi()
 
-                    if (result.images != null && result.images.isNotEmpty())
+                    if (result.images != null && result.images!!.isNotEmpty())
                         Glide.with(binding.productImage)
-                            .load(result.images[0])
+                            .load(result.images!![0])
                             .placeholder(R.drawable.ic_product_holder)
                             .into(binding.productImage)
                 }

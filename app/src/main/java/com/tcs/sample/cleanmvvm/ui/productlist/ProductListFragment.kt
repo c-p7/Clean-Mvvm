@@ -44,7 +44,7 @@ class ProductListFragment : Fragment(), ProductsAdapter.ProductListItemClickList
                 Log.d(TAG, "resultProductList ==>> collect")
                 (requireActivity() as HomeActivity).hideProgressBar()
 
-                if (result?.products != null && result.products?.isNotEmpty()) {
+                if (result?.products != null && result.products?.isNotEmpty() == true) {
                     Log.d(TAG, "resultProductList ==>> collect : ${result.products?.size}")
                     binding.productList.adapter = ProductsAdapter(result.products, productListItemClickListener)
                     binding.productList.visibility = View.VISIBLE

@@ -1,9 +1,9 @@
 package com.tcs.sample.cleanmvvm.domain.usecase
 
 import com.tcs.sample.cleanmvvm.data.repository.ProductsRepositoryImpl
-import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
+import com.tcs.sample.domain.model.ProductDetail
 import com.tcs.sample.cleanmvvm.domain.model.ProductList
-import com.tcs.sample.cleanmvvm.domain.usecases.GetProductsListUseCase
+import com.tcs.sample.domain.usecases.GetProductsListUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.Assert.assertNotNull

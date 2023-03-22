@@ -1,6 +1,6 @@
 package com.tcs.sample.cleanmvvm.domain.viewmodel
 
-import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
+import com.tcs.sample.domain.model.ProductDetail
 import com.tcs.sample.cleanmvvm.domain.usecases.GetProductUseCase
 import com.tcs.sample.cleanmvvm.ui.product.ProductViewModel
 import io.mockk.coEvery

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tcs.sample.cleanmvvm.R
 import com.tcs.sample.cleanmvvm.databinding.LayoutProductItemRowBinding
-import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
+import com.tcs.sample.domain.model.ProductDetail
 
 class ProductsAdapter(private val products:List<ProductDetail>?, private val itemClick: ProductListItemClickListener) : RecyclerView.Adapter<ProductsAdapter.PeopleViewHolder>() {
     private val TAG = ProductsAdapter::class.simpleName
@@ -27,7 +27,7 @@ class ProductsAdapter(private val products:List<ProductDetail>?, private val ite
     override fun getItemCount(): Int {
 
         return if (products != null && products.isNotEmpty())
-            products?.size
+            products.size
         else 0
     }
 

@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "CleanMvvm"
 include ':app'
+include ':Domain'
