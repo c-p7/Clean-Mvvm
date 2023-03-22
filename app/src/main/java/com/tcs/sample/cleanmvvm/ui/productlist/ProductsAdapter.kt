@@ -27,7 +27,7 @@ class ProductsAdapter(private val products:List<ProductDetail>?, private val ite
     override fun getItemCount(): Int {
 
         return if (products != null && products.isNotEmpty())
-            products?.size
+            products.size
         else 0
     }
 
