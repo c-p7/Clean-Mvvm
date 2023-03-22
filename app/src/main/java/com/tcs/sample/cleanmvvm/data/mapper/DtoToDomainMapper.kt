@@ -19,5 +19,6 @@ fun ProductDetailDto.toDomain() = ProductDetail(
     stock = stock,
     brand = brand,
     category = category,
+    thumbnail = thumbnail,
     images = images
 )

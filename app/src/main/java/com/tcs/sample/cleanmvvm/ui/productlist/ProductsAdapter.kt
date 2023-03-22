@@ -10,14 +10,17 @@ import com.tcs.sample.cleanmvvm.databinding.LayoutProductItemRowBinding
 import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
 
 class ProductsAdapter(private val products:List<ProductDetail>?, private val itemClick: ProductListItemClickListener) : RecyclerView.Adapter<ProductsAdapter.PeopleViewHolder>() {
+    private val TAG = ProductsAdapter::class.simpleName
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleViewHolder {
+        Log.d(TAG, "onCreateViewHolder ==>>")
 
         val binding = LayoutProductItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PeopleViewHolder(binding, itemClick)
     }
 
     override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) {
+        Log.d(TAG, "onCreateViewHolder position ==>> $position")
         products?.get(position)?.let { holder.bindView(it) }
     }
 
@@ -33,7 +36,7 @@ class ProductsAdapter(private val products:List<ProductDetail>?, private val ite
 
         fun bindView(item: ProductDetail) {
 
-            Log.d(TAG, "==>> bindView ${binding.product}")
+            Log.d(TAG, "bindView ==>> thumbnail ${item.thumbnail}")
             binding.product = item
             Glide.with(binding.productLogo)
                 .load(item.thumbnail)

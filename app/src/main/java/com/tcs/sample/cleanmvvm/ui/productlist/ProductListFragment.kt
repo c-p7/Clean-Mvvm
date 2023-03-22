@@ -39,11 +39,13 @@ class ProductListFragment : Fragment(), ProductsAdapter.ProductListItemClickList
         Log.d(TAG, "==>> onViewCreated")
 
         lifecycleScope.launchWhenCreated {
+            Log.d(TAG, "launchWhenCreated")
             viewModel.resultProductList.collect { result ->
-
+                Log.d(TAG, "resultProductList ==>> collect")
                 (requireActivity() as HomeActivity).hideProgressBar()
 
-                if (result?.products != null && result.products?.isNotEmpty() ?: true) {
+                if (result?.products != null && result.products?.isNotEmpty()) {
+                    Log.d(TAG, "resultProductList ==>> collect : ${result.products?.size}")
                     binding.productList.adapter = ProductsAdapter(result.products, productListItemClickListener)
                     binding.productList.visibility = View.VISIBLE
                     binding.noDataContainer.visibility = View.GONE

@@ -23,11 +23,12 @@ class ProductsRepositoryImpl (private val apiServices: ApiService) : RemoteDataS
 
             flow {
                 if (result.isSuccessful) {
-                    result.body()?.let { emit(it.toDomain()) }
                     Log.d(TAG, "Success Response ==>> ${result.body().toString()}")
-                } else
+                    result.body()?.let { emit(it.toDomain()) }
+                } else {
+                    Log.d(TAG, "Error Response ==>> ${result.errorBody().toString()}")
                     emit(ProductList())
-                Log.d(TAG, "Error Response ==>> ${result.errorBody().toString()}")
+                }
             }.flowOn(Dispatchers.IO)
 
         } catch (exp : Exception) {
@@ -47,11 +48,11 @@ class ProductsRepositoryImpl (private val apiServices: ApiService) : RemoteDataS
 
             flow {
                 if (result.isSuccessful) {
-                    result.body()?.let { emit(it.toDomain()) }
                     Log.d(TAG, "Success Response ==>> ${result.body().toString()}")
+                    result.body()?.let { emit(it.toDomain()) }
                 } else {
-                    emit(ProductDetail())
                     Log.d(TAG, "Error Response ==>> ${result.errorBody().toString()}")
+                    emit(ProductDetail())
                 }
             }.flowOn(Dispatchers.IO)
 
