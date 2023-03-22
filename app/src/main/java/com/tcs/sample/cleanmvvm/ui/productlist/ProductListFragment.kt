@@ -42,10 +42,9 @@ class ProductListFragment : Fragment(), ProductsAdapter.ProductListItemClickList
             viewModel.resultProductList.collect { result ->
 
                 (requireActivity() as HomeActivity).hideProgressBar()
-                Log.d(TAG, "viewModel resultProductList result size ==>> ${result?.size}")
 
-                if (result != null && result.isNotEmpty()) {
-                    binding.productList.adapter = ProductsAdapter(result, productListItemClickListener)
+                if (result?.products != null && result.products?.isNotEmpty() ?: true) {
+                    binding.productList.adapter = ProductsAdapter(result.products, productListItemClickListener)
                     binding.productList.visibility = View.VISIBLE
                     binding.noDataContainer.visibility = View.GONE
                 } else {

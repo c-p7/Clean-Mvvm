@@ -3,7 +3,7 @@ package com.tcs.sample.cleanmvvm.ui.product
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tcs.sample.cleanmvvm.domain.model.Product
+import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
 import com.tcs.sample.cleanmvvm.domain.usecases.GetProductUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,8 +18,8 @@ import javax.inject.Inject
 class ProductViewModel @Inject constructor(private var getProductUseCase: GetProductUseCase): ViewModel() {
     private val TAG = ProductViewModel::class.simpleName
 
-    private val _resultProduct = Channel<Product>(Channel.BUFFERED)
-    val resultProduct: Flow<Product> = _resultProduct.receiveAsFlow()
+    private val _resultProduct = Channel<ProductDetail>(Channel.BUFFERED)
+    val resultProduct: Flow<ProductDetail> = _resultProduct.receiveAsFlow()
 
     fun getSingleProduct(id: Int) {
         Log.d(TAG, "getSingleProduct id ==>> $id")

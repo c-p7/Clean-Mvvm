@@ -1,8 +1,10 @@
 package com.tcs.sample.cleanmvvm.data.repository
 
 import android.util.Log
+import com.tcs.sample.cleanmvvm.data.mapper.toDomain
 import com.tcs.sample.cleanmvvm.data.remote.ApiService
-import com.tcs.sample.cleanmvvm.domain.model.Product
+import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
+import com.tcs.sample.cleanmvvm.domain.model.ProductList
 import com.tcs.sample.cleanmvvm.domain.repository.RemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -13,7 +15,7 @@ import java.lang.Exception
 class ProductsRepositoryImpl (private val apiServices: ApiService) : RemoteDataSource {
     private val TAG = ProductsRepositoryImpl::class.simpleName
 
-    override suspend fun getProductsList(): Flow<List<Product>?> {
+    override suspend fun getProductsList(): Flow<ProductList?> {
         Log.d(TAG, "==>> getProductsList")
 
         return try {
@@ -21,10 +23,10 @@ class ProductsRepositoryImpl (private val apiServices: ApiService) : RemoteDataS
 
             flow {
                 if (result.isSuccessful) {
-                    emit(result.body()?.products)
+                    result.body()?.let { emit(it.toDomain()) }
                     Log.d(TAG, "Success Response ==>> ${result.body().toString()}")
                 } else
-                    emit(emptyList<Product>())
+                    emit(ProductList())
                 Log.d(TAG, "Error Response ==>> ${result.errorBody().toString()}")
             }.flowOn(Dispatchers.IO)
 
@@ -32,12 +34,12 @@ class ProductsRepositoryImpl (private val apiServices: ApiService) : RemoteDataS
             Log.d(TAG, "Exception ==>> ${exp.localizedMessage}")
 
             flow {
-                emit(emptyList<Product>())
+                emit(ProductList())
             }.flowOn(Dispatchers.IO)
         }
     }
 
-    override suspend fun getProduct(id: Int): Flow<Product?> {
+    override suspend fun getProduct(id: Int): Flow<ProductDetail?> {
         Log.d(TAG, "getProductsList id ==>> $id")
 
         return try {
@@ -45,10 +47,10 @@ class ProductsRepositoryImpl (private val apiServices: ApiService) : RemoteDataS
 
             flow {
                 if (result.isSuccessful) {
-                    emit(result.body())
+                    result.body()?.let { emit(it.toDomain()) }
                     Log.d(TAG, "Success Response ==>> ${result.body().toString()}")
                 } else {
-                    emit(Product())
+                    emit(ProductDetail())
                     Log.d(TAG, "Error Response ==>> ${result.errorBody().toString()}")
                 }
             }.flowOn(Dispatchers.IO)
@@ -57,7 +59,7 @@ class ProductsRepositoryImpl (private val apiServices: ApiService) : RemoteDataS
             Log.d(TAG, "Exception ==>> ${exp.localizedMessage}")
 
             flow {
-                emit(Product())
+                emit(ProductDetail())
             }.flowOn(Dispatchers.IO)
         }
     }

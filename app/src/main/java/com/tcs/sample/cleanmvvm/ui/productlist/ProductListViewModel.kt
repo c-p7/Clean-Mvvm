@@ -3,7 +3,7 @@ package com.tcs.sample.cleanmvvm.ui.productlist
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tcs.sample.cleanmvvm.domain.model.Product
+import com.tcs.sample.cleanmvvm.domain.model.ProductList
 import com.tcs.sample.cleanmvvm.domain.usecases.GetProductsListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,15 +18,15 @@ import javax.inject.Inject
 class ProductListViewModel @Inject constructor(private var getProductsListUseCase: GetProductsListUseCase) : ViewModel() {
     private val TAG = ProductListViewModel::class.simpleName
 
-    private val _resultProductList = Channel<List<Product>?>(Channel.BUFFERED)
-    val resultProductList: Flow<List<Product>?> = _resultProductList.receiveAsFlow()
+    private val _resultProductList = Channel<ProductList?>(Channel.BUFFERED)
+    val resultProductList: Flow<ProductList?> = _resultProductList.receiveAsFlow()
 
     fun getProducts() {
         Log.d(TAG, "==>> getProducts")
 
         viewModelScope.launch(Dispatchers.IO) {
             getProductsListUseCase.getProductList().collect {
-                Log.d(TAG, "getProducts size ==>> ${it?.size}")
+                Log.d(TAG, "getProducts size ==>> ${it?.products?.size}")
                 _resultProductList.send(it)
             }
         }

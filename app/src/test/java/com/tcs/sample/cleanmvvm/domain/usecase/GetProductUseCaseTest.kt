@@ -1,7 +1,7 @@
 package com.tcs.sample.cleanmvvm.domain.usecase
 
 import com.tcs.sample.cleanmvvm.data.repository.ProductsRepositoryImpl
-import com.tcs.sample.cleanmvvm.domain.model.Product
+import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
 import com.tcs.sample.cleanmvvm.domain.usecases.GetProductUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -30,7 +30,7 @@ class GetProductUseCaseTest {
     @Test
     fun testProductUseCase() = runBlocking {
 
-        coEvery { getProductUseCase.getProduct(1) } returns flow { emit(Product(1, "test")) }
+        coEvery { getProductUseCase.getProduct(1) } returns flow { emit(ProductDetail(1, "test")) }
 
         val result = getProductUseCase.getProduct(1).first()
 

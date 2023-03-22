@@ -2,10 +2,12 @@ package com.tcs.sample.cleanmvvm.data
 
 import com.tcs.sample.cleanmvvm.data.remote.ApiService
 import com.tcs.sample.cleanmvvm.data.repository.ProductsRepositoryImpl
-import com.tcs.sample.cleanmvvm.domain.model.Product
+import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
+import com.tcs.sample.cleanmvvm.domain.model.ProductList
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
 import junit.framework.Assert.assertNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
@@ -24,22 +26,23 @@ class ProductsRepositoryImplTest {
 
     @Before
     fun setUp() {
-        MockKAnnotations.init(this) //for initialization
+        apiService = mockk<ApiService>()
         this.productsRepositoryImpl = ProductsRepositoryImpl(apiService)
     }
 
     @Test
     fun getProductListData() = runBlocking {
-        val expectedList = listOf<Product>(Product(1, "test"))
+        val expectedList = listOf<ProductDetail>(ProductDetail(1, "test"))
+        val expectedProductList = ProductList(expectedList)
         coEvery { productsRepositoryImpl.getProductsList() } returns flow {
-            emit(expectedList)
+            emit(expectedProductList)
         }
 
         val result = productsRepositoryImpl.getProductsList().first()
 
         assertNotNull(result)
         assertThat(
-            "Received result [$result] & mocked [$expectedList] must be matches on each other!",
+            "Received result [$result] & mocked [$expectedProductList] must be matches on each other!",
             result,
             CoreMatchers.`is`(expectedList)
         )

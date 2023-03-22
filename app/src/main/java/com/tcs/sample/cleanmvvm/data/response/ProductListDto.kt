@@ -1,10 +1,8 @@
-package com.tcs.sample.cleanmvvm.domain.model
+package com.tcs.sample.cleanmvvm.data.response
 
-import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
-@Keep
-data class ProductsResult(
+data class ProductListDto(
     @SerializedName("total")
     val total: Int,
 
@@ -15,5 +13,5 @@ data class ProductsResult(
     val skip: Int,
 
     @SerializedName("products")
-    val products: List<Product>
+    val `products`: List<ProductDetailDto>
 )

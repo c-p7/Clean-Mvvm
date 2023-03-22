@@ -1,9 +1,9 @@
 package com.tcs.sample.cleanmvvm.domain.usecase
 
 import com.tcs.sample.cleanmvvm.data.repository.ProductsRepositoryImpl
-import com.tcs.sample.cleanmvvm.domain.model.Product
+import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
+import com.tcs.sample.cleanmvvm.domain.model.ProductList
 import com.tcs.sample.cleanmvvm.domain.usecases.GetProductsListUseCase
-import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.Assert.assertNotNull
@@ -23,26 +23,26 @@ class GetProductListUseCaseTest {
 
     @Before
     fun setUp() {
-        MockKAnnotations.init(this)
         this.getProductsListUseCase = GetProductsListUseCase(repositoryImpl)
     }
 
     @Test
     fun testProductListUseCase() = runBlocking {
-        val expectedList = listOf<Product>(Product(1, "test"))
+        val expectedList = listOf<ProductDetail>(ProductDetail(1, "test"))
+        val expectedProductList = ProductList(expectedList)
         coEvery { getProductsListUseCase.getProductList() } returns flow {
-            emit(expectedList)
+            emit(expectedProductList)
         }
 
         val result = getProductsListUseCase.getProductList().first()
 
         assertNotNull(result)
         if (result != null) {
-            assert(expectedList == result)
+            assert(expectedProductList == result)
             MatcherAssert.assertThat(
-                "Received result [$result] & mocked [$expectedList] must be matches on each other!",
+                "Received result [$result] & mocked [$expectedProductList] must be matches on each other!",
                 result,
-                CoreMatchers.`is`(expectedList))
+                CoreMatchers.`is`(expectedProductList))
         }
     }
 }

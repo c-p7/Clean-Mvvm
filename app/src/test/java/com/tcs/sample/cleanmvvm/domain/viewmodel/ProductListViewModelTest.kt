@@ -1,6 +1,7 @@
 package com.tcs.sample.cleanmvvm.domain.viewmodel
 
-import com.tcs.sample.cleanmvvm.domain.model.Product
+import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
+import com.tcs.sample.cleanmvvm.domain.model.ProductList
 import com.tcs.sample.cleanmvvm.domain.usecases.GetProductsListUseCase
 import com.tcs.sample.cleanmvvm.ui.productlist.ProductListViewModel
 import io.mockk.coEvery
@@ -26,17 +27,20 @@ class ProductListViewModelTest {
     @Test
     fun testProductListViewModel() = runBlocking {
 
+        val expectedList = listOf<ProductDetail>(ProductDetail(1, "test"))
+        val expectedProductList = ProductList(expectedList)
+
         coEvery { getProductsListUseCase.getProductList() } returns flow {
-            emit(listOf<Product>(Product(1)))
+            emit(expectedProductList)
         }
         mainViewModel.getProducts()
         var productResult = mainViewModel.resultProductList.first()
 
-        if (productResult != null) {
-            assert(productResult.isNotEmpty())
+        if (productResult?.products != null) {
+            productResult?.products?.isNotEmpty()?.let { assert(it) }
         }
         if (productResult != null) {
-            assert(productResult.size == 1)
+            assert(productResult?.products?.size == 1)
         }
     }
 }

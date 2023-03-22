@@ -1,10 +1,8 @@
-package com.tcs.sample.cleanmvvm.domain.model
+package com.tcs.sample.cleanmvvm.data.response
 
-import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
-@Keep
-data class Product (
+data class ProductDetailDto(
 
     @SerializedName("id")
     val id: Int = 0,

@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tcs.sample.cleanmvvm.R
-import com.tcs.sample.cleanmvvm.domain.model.Product
 import com.tcs.sample.cleanmvvm.databinding.LayoutProductItemRowBinding
+import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
 
-class ProductsAdapter(private val products:List<Product>?, private val itemClick: ProductListItemClickListener) : RecyclerView.Adapter<ProductsAdapter.PeopleViewHolder>() {
+class ProductsAdapter(private val products:List<ProductDetail>?, private val itemClick: ProductListItemClickListener) : RecyclerView.Adapter<ProductsAdapter.PeopleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleViewHolder {
 
@@ -31,7 +31,7 @@ class ProductsAdapter(private val products:List<Product>?, private val itemClick
     class PeopleViewHolder(private val binding: LayoutProductItemRowBinding,  private val itemClick: ProductListItemClickListener) : RecyclerView.ViewHolder(binding.root) {
         private val TAG = PeopleViewHolder::class.simpleName
 
-        fun bindView(item: Product) {
+        fun bindView(item: ProductDetail) {
 
             Log.d(TAG, "==>> bindView ${binding.product}")
             binding.product = item
