@@ -25,7 +25,7 @@ class ProductListViewModel @Inject constructor(private var getProductsListUseCas
         Log.d(TAG, "==>> getProducts")
 
         viewModelScope.launch(Dispatchers.IO) {
-            getProductsListUseCase.getProductList().collect {
+            getProductsListUseCase.getProductsList().collect {
                 Log.d(TAG, "getProducts size ==>> ${it?.products?.size}")
                 _resultProductList.send(it)
             }

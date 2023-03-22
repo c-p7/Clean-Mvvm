@@ -12,7 +12,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tcs.sample.cleanmvvm.ui.HomeActivity
 import com.tcs.sample.cleanmvvm.databinding.LayoutProductListFragmentBinding
+import com.tcs.sample.cleanmvvm.di.DaggerAppComponent
+import com.tcs.sample.cleanmvvm.di.ModuleDependencies
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
@@ -26,6 +29,7 @@ class ProductListFragment : Fragment(), ProductsAdapter.ProductListItemClickList
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         Log.d(TAG, "==>> onCreateView")
 
+        initCoreDependentInjection()
         binding = LayoutProductListFragmentBinding.inflate(inflater, container, false)
         binding.productList.layoutManager = LinearLayoutManager(requireContext())
         productListItemClickListener = this
@@ -63,5 +67,18 @@ class ProductListFragment : Fragment(), ProductsAdapter.ProductListItemClickList
         Log.d(TAG, "productId ==>> $productId")
         findNavController().navigate(
             ProductListFragmentDirections.actionNavigationPeopleToNavigationDetail(productId))
+    }
+
+    private fun initCoreDependentInjection() {
+
+        val coreModuleDependencies = EntryPointAccessors.fromApplication(
+            requireActivity().applicationContext,
+            ModuleDependencies::class.java
+        )
+
+        DaggerAppComponent.factory().create(
+            dependentModule = coreModuleDependencies,
+            fragment = this
+        ).inject(this)
     }
 }

@@ -13,7 +13,10 @@ import com.bumptech.glide.Glide
 import com.tcs.sample.cleanmvvm.ui.HomeActivity
 import com.tcs.sample.cleanmvvm.R
 import com.tcs.sample.cleanmvvm.databinding.LayoutProductDetailsFragmentBinding
+import com.tcs.sample.cleanmvvm.di.DaggerAppComponent
+import com.tcs.sample.cleanmvvm.di.ModuleDependencies
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
@@ -27,6 +30,7 @@ class ProductFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d(TAG, "onCreateView")
 
+        initCoreDependentInjection()
         binding = LayoutProductDetailsFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -72,5 +76,18 @@ class ProductFragment : Fragment() {
     private fun setUpDataContainerVisibleUi() {
         binding.noDataContainer.visibility = View.GONE
         binding.dataContainer.visibility = View.VISIBLE
+    }
+
+    private fun initCoreDependentInjection() {
+
+        val coreModuleDependencies = EntryPointAccessors.fromApplication(
+            requireActivity().applicationContext,
+            ModuleDependencies::class.java
+        )
+
+        DaggerAppComponent.factory().create(
+            dependentModule = coreModuleDependencies,
+            fragment = this
+        ).inject(this)
     }
 }
