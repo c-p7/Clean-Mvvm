@@ -22,7 +22,7 @@ Used REST API, develop a simple application that fetches the
 posts from the API and displays them in a list.
 
 [mvvm-domain-module](https://github.com/c-p7/Clean-Mvvm/tree/mvvm-domain-module)
-  Domain layer moved to separate module and used into main app.
+  Domain layer moved to separate module and used into main app using injection
 
 ### Used libraries
 
