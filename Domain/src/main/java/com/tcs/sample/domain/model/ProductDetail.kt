@@ -1,4 +1,4 @@
-package com.tcs.sample.cleanmvvm.domain.model
+package com.tcs.sample.domain.model
 
 data class ProductDetail(
     val id: Int = 0,

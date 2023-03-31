@@ -3,7 +3,7 @@ package com.tcs.sample.cleanmvvm.ui.product
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
+import com.tcs.sample.domain.model.ProductDetail
 import com.tcs.sample.cleanmvvm.domain.usecases.GetProductUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

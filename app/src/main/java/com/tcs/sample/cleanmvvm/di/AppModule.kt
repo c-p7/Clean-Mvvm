@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.tcs.sample.cleanmvvm.Constants
 import com.tcs.sample.cleanmvvm.data.remote.ApiService
 import com.tcs.sample.cleanmvvm.data.repository.ProductsRepositoryImpl
-import com.tcs.sample.cleanmvvm.domain.repository.RemoteDataSource
+import com.tcs.sample.domain.repository.RemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

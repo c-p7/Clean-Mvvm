@@ -2,8 +2,8 @@ package com.tcs.sample.cleanmvvm.data.mapper
 
 import com.tcs.sample.cleanmvvm.data.response.ProductDetailDto
 import com.tcs.sample.cleanmvvm.data.response.ProductListDto
-import com.tcs.sample.cleanmvvm.domain.model.ProductDetail
-import com.tcs.sample.cleanmvvm.domain.model.ProductList
+import com.tcs.sample.domain.model.ProductDetail
+import com.tcs.sample.domain.model.ProductList
 
 fun ProductListDto.toDomain() = ProductList(
     products = products.map { it.toDomain() }
